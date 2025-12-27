@@ -1,3 +1,74 @@
+// Abstract Factory — создаёт семейство связанных продуктов
+// Abstract Factory — «какой набор объектов создать?»
+interface AbstractChair {
+  hasLegs(): string;
+}
+
+interface AbstractSofa {
+  hasCushions(): string;
+}
+
+interface AbstractFactory {
+  createChair(): AbstractChair;
+  createSofa(): AbstractSofa;
+}
+
+class ModernFurniture implements AbstractFactory {
+  public createChair(): AbstractChair {
+    return new ModernChair();
+  }
+
+  public createSofa(): AbstractSofa {
+    return new ModernSofa();
+  }
+}
+
+class ClassicFurniture implements AbstractFactory {
+  public createChair(): AbstractChair {
+    return new ClassicChair();
+  }
+
+  public createSofa(): AbstractSofa {
+    return new ClassicSofa();
+  }
+}
+class ModernChair implements AbstractChair {
+  public hasLegs(): string {
+    return 'Modern chair has 4 legs';
+  }
+}
+
+class ModernSofa implements AbstractSofa {
+  public hasCushions(): string {
+    return 'Modern sofa has soft cushions';
+  }
+}
+
+class ClassicChair implements AbstractChair {
+  public hasLegs(): string {
+    return 'Classic chair has ornate legs';
+  }
+}
+
+class ClassicSofa implements AbstractSofa {
+  public hasCushions(): string {
+    return 'Classic sofa has firm cushions';
+  }
+}
+
+function madeFurniture(factory: AbstractFactory) {
+  const chair = factory.createChair();
+  const sofa = factory.createSofa();
+
+  console.log(chair.hasLegs());
+  console.log(sofa.hasCushions());
+}
+
+madeFurniture(new ModernFurniture());
+madeFurniture(new ClassicFurniture());
+
+////////////////
+
 // Abstract Factory — это порождающий шаблон проектирования, который решает проблему
 // создания целых семейств продуктов без указания их конкретных классов.
 
