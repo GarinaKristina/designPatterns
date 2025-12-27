@@ -1,5 +1,6 @@
 // Factory Method — создаёт один продукт
 // Factory Method — «что именно создать?»
+// использование в главном классе а создание объектов переносится в подклассы
 interface Product {
   operation(): string;
 }

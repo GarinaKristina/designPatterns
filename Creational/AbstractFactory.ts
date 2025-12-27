@@ -56,6 +56,8 @@ class ClassicSofa implements AbstractSofa {
   }
 }
 
+// КЛИЕНТ не знает как создается класс
+// Фабрика нужна, чтобы client зависел от интерфейса
 function madeFurniture(factory: AbstractFactory) {
   const chair = factory.createChair();
   const sofa = factory.createSofa();
