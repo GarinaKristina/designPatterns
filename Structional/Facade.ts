@@ -27,6 +27,18 @@
 // + Вы можете изолировать свой код от сложности подсистемы.
 // - Фасад может стать своего рода «божественным объектом», связанным со всеми классами приложения.
 
+class Subsystem1 {
+  public operation1(): string {
+    return 'Subsystem1: Ready!\n';
+  }
+}
+
+class Subsystem2 {
+  public operation2(): string {
+    return 'Subsystem2: Ready!\n';
+  }
+}
+
 class Facade {
   protected subsystem1: Subsystem1;
   protected subsystem2: Subsystem2;
@@ -36,40 +48,16 @@ class Facade {
     this.subsystem2 = subsystem2;
   }
 
-  public operation(): string {
+  public processRun(): string {
     let result = 'Facade initializes subsystems:\n';
     result += this.subsystem1.operation1();
-    result += this.subsystem2.operation1();
-    result += 'Facade orders subsystems to perform the action:\n';
-    result += this.subsystem1.operationN();
-    result += this.subsystem2.operationZ();
-
+    result += this.subsystem2.operation2();
     return result;
   }
 }
 
-class Subsystem1 {
-  public operation1(): string {
-    return 'Subsystem1: Ready!\n';
-  }
-
-  public operationN(): string {
-    return 'Subsystem1: Go!\n';
-  }
-}
-
-class Subsystem2 {
-  public operation1(): string {
-    return 'Subsystem2: Get ready!\n';
-  }
-
-  public operationZ(): string {
-    return 'Subsystem2: Fire!';
-  }
-}
-
 function clientCode(facade: Facade) {
-  console.log(facade.operation());
+  console.log(facade.processRun());
 }
 
 const subsystem1 = new Subsystem1();

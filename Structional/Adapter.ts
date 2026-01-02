@@ -19,7 +19,7 @@ class Target {
 
 class IneedAdapter {
   public specificRequest(): string {
-    return '.eetpadA eht fo roivaheb laicepS';
+    return '.eetpadA';
   }
 }
 
@@ -27,7 +27,7 @@ class Adapter extends Target {
   private adaptee: IneedAdapter;
 
   constructor(adaptee: IneedAdapter) {
-    super();
+    super(); //- Инициализирует родительский класс Target и создаёт this
     this.adaptee = adaptee;
   }
 
@@ -37,13 +37,14 @@ class Adapter extends Target {
   }
 }
 
-function clientCode(target: Target) {
+function clientCode5(target: Target) {
   console.log(target.request());
 }
 
 const target = new Target();
-clientCode(target);
+clientCode5(target);
 
 const iNeedAdapter = new IneedAdapter();
 const adapter = new Adapter(iNeedAdapter);
-clientCode(adapter);
+console.log(adapter.request());
+// clientCode5(adapter);

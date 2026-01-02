@@ -20,25 +20,6 @@ interface AbstractFactory {
   createSofa(): AbstractSofa;
 }
 
-class ModernFurniture implements AbstractFactory {
-  public createChair(): AbstractChair {
-    return new ModernChair();
-  }
-
-  public createSofa(): AbstractSofa {
-    return new ModernSofa();
-  }
-}
-
-class ClassicFurniture implements AbstractFactory {
-  public createChair(): AbstractChair {
-    return new ClassicChair();
-  }
-
-  public createSofa(): AbstractSofa {
-    return new ClassicSofa();
-  }
-}
 class ModernChair implements AbstractChair {
   public hasLegs(): string {
     return 'Modern chair has 4 legs';
@@ -62,7 +43,25 @@ class ClassicSofa implements AbstractSofa {
     return 'Classic sofa has firm cushions';
   }
 }
+class ModernFurniture implements AbstractFactory {
+  public createChair(): AbstractChair {
+    return new ModernChair();
+  }
 
+  public createSofa(): AbstractSofa {
+    return new ModernSofa();
+  }
+}
+
+class ClassicFurniture implements AbstractFactory {
+  public createChair(): AbstractChair {
+    return new ClassicChair();
+  }
+
+  public createSofa(): AbstractSofa {
+    return new ClassicSofa();
+  }
+}
 // КЛИЕНТ не знает как создается класс
 // Фабрика нужна, чтобы client зависел от интерфейса
 function madeFurniture(factory: AbstractFactory) {

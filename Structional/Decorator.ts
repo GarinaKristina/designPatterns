@@ -48,7 +48,7 @@ class MoreSparkles extends SugarPercentage {
   }
 }
 
-function clientCode(component: Sugar) {
+function clientCode6(component: Sugar) {
   console.log(`Sweets with: ${component.operation()}`);
 
   // ...
@@ -56,8 +56,8 @@ function clientCode(component: Sugar) {
 
 const candy = new Candy();
 
-clientCode(candy);
+clientCode6(candy);
 
 const candyResult = new WithCaramel(candy);
 const candyResult2 = new MoreSparkles(candyResult);
-clientCode(candyResult2);
+clientCode6(candyResult2);

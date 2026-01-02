@@ -7,23 +7,32 @@
 // - Данный подход требует особого подхода в многопоточной среде, чтобы несколько потоков не создавали объект-синглтон несколько раз.
 // - Проведение модульного тестирования клиентского кода синглтона может быть затруднительным, поскольку многие тестовые фреймворки полагаются на наследование при создании фиктивных объектов.Так как конструктор класса синглтона является приватным, а переопределение статических методов невозможно в большинстве языков, вам придётся придумать креативный способ создания фиктивных объектов для синглтона.Или просто не писать тесты.Или не использовать паттерн «Синглтон».
 class Singleton {
-  static #instance: Singleton;
+  static instance: Singleton;
 
   private constructor() {
     // Private constructor to prevent instantiation
   }
 
   public static get Instance(): Singleton {
-    if (!Singleton.#instance) {
-      Singleton.#instance = new Singleton();
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
     }
-    return Singleton.#instance;
+    return Singleton.instance;
   }
 
   public someBusinessLogic() {
     console.log('Executing some business logic.');
   }
 }
+function clientCode11() {
+  const s1 = Singleton.instance;
+  const s2 = Singleton.instance;
+
+  if (s1 === s2) console.log('Singleton works, both variables contain the same instance.');
+  else console.log('Singleton failed, variables contain different instances.');
+}
+
+clientCode11();
 // Singleton усложняет тестирование,
 // потому что содержит глобальное состояние,
 // которое разделяется между тестами.

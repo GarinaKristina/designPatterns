@@ -41,15 +41,15 @@ class ConcreteClass2 extends AbstractClass {
   }
 }
 
-function clientCode(abstractClass: AbstractClass) {
+function clientCode4(abstractClass: AbstractClass) {
   abstractClass.templateMethod();
 }
 
 console.log('Client c ConcreteClass1:');
-clientCode(new ConcreteClass1());
+clientCode4(new ConcreteClass1());
 
 console.log('\nClient c ConcreteClass2:');
-clientCode(new ConcreteClass2());
+clientCode4(new ConcreteClass2());
 
 // Фабричный метод — это специализация шаблонного метода .
 //  При этом фабричный метод может служить шагом в большом шаблонном методе.
