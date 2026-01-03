@@ -31,16 +31,16 @@ class ConcreateCreater extends Creater {
     return new ConcreateProduct();
   }
 }
-console.log(new ConcreateCreater().someOperation());
-// function clientCode1(creator: Creater) {
-//   console.log(creator.someOperation());
-// }
+// console.log(new ConcreateCreater().someOperation());
+function clientCode1(creator: Creater) {
+  console.log(creator.someOperation());
+}
 //Мы вызываем функцию clientCode, вызываем someOperation() из внутрянки ConcreateCreater,
 // внутри ConcreateCreater такой функции нет поэтому он идет в абстрактный класс родителя Create
 // someOperation() внутри себя вызывает factoryMethod() который уже переопределен в ConcreateCreater
 // из-за того что в factoryMethod()  создается инстанс ConcreateProduct,
 // вызывается метод operation() из ConcreateProduct
-// clientCode1(new ConcreateCreater());
+clientCode1(new ConcreateCreater()); //
 // Фабричный метод — это порождающий шаблон проектирования который предоставляет интерфейс
 // для создания объектов в суперклассе,
 //но позволяет подклассам изменять тип создаваемых объектов.

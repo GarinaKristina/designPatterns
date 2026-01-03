@@ -29,7 +29,7 @@ interface PaymentStrategy {
 // конкретная стратегия
 class CardPayment implements PaymentStrategy {
   pay(amount: number): void {
-    console.log(`Pay ${amount} with card`);
+    console.log(`Pay ${amount} by card`);
   }
 }
 
@@ -56,7 +56,7 @@ class Shop {
 
 // клиентский код
 const shop = new Shop(new CardPayment());
-shop.checkout(100); // Pay 100 with card
+shop.checkout(100); // Pay 100  by card
 
 shop.setPayment(new CashPayment());
 shop.checkout(100); // Pay 100 with cash

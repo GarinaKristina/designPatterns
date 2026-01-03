@@ -13,7 +13,7 @@
 //   изменить класс сервиса, чтобы он соответствовал остальному коду.
 class Target {
   public request(): string {
-    return "Target: The default target's behavior.";
+    return 'Hello';
   }
 }
 
@@ -32,8 +32,7 @@ class Adapter extends Target {
   }
 
   public request(): string {
-    const result = this.adaptee.specificRequest().split('').reverse().join('');
-    return `Adapter: (TRANSLATED) ${result}`;
+    return this.adaptee.specificRequest().split('').reverse().join('');
   }
 }
 
@@ -41,8 +40,8 @@ function clientCode5(target: Target) {
   console.log(target.request());
 }
 
-const target = new Target();
-clientCode5(target);
+// const target = new Target();
+// clientCode5(target);
 
 const iNeedAdapter = new IneedAdapter();
 const adapter = new Adapter(iNeedAdapter);

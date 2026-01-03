@@ -9,47 +9,43 @@
 // - Вы можете нарушить принцип подстановки Лискова , подавив реализацию шага по умолчанию с помощью подкласса.
 // - Чем больше шагов в шаблонных методах, тем сложнее их поддерживать.
 abstract class AbstractClass {
+  //нельзя создать экземляр этого класса напрямую, только через подклассы
   public templateMethod(): void {
     this.baseOperation();
     this.requiredOperation1();
-    this.requiredOperation2();
   }
 
   protected baseOperation(): void {
-    console.log('AbstractClass: базовая операция');
+    console.log('AbstractClass:base operation');
   }
 
-  protected abstract requiredOperation1(): void;
-  protected abstract requiredOperation2(): void;
+  protected abstract requiredOperation1(): void; //обязательный метод для подклассов, может вызываться только внутри шаблона
 }
 
-class ConcreteClass1 extends AbstractClass {
+class Concrete1 extends AbstractClass {
+  // Если сделать метод public, то:
+  // клиент сможет вызвать шаг напрямую
+  // нарушается инкапсуляция
+  // алгоритм «ломается»
   protected requiredOperation1(): void {
-    console.log('ConcreteClass1: операция 1');
-  }
-  protected requiredOperation2(): void {
-    console.log('ConcreteClass1: операция 2');
+    //потому что нельзя расширять уровень доступа при переопределении
+    // Клиент вызывает только шаблон
+    // Шаги алгоритма — внутреннее дело класса
+    console.log('ConcreteClass1: operation 1');
   }
 }
 
-class ConcreteClass2 extends AbstractClass {
+class Concrete2 extends AbstractClass {
   protected requiredOperation1(): void {
-    console.log('ConcreteClass2: операция 1');
-  }
-  protected requiredOperation2(): void {
-    console.log('ConcreteClass2: операция 2');
+    console.log('ConcreteClass2: operation 1');
   }
 }
 
 function clientCode4(abstractClass: AbstractClass) {
   abstractClass.templateMethod();
 }
-
-console.log('Client c ConcreteClass1:');
-clientCode4(new ConcreteClass1());
-
-console.log('\nClient c ConcreteClass2:');
-clientCode4(new ConcreteClass2());
+clientCode4(new Concrete1());
+clientCode4(new Concrete2());
 
 // Фабричный метод — это специализация шаблонного метода .
 //  При этом фабричный метод может служить шагом в большом шаблонном методе.

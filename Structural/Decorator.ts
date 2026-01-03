@@ -60,4 +60,4 @@ clientCode6(candy);
 
 const candyResult = new WithCaramel(candy);
 const candyResult2 = new MoreSparkles(candyResult);
-clientCode6(candyResult2);
+clientCode6(candyResult);
